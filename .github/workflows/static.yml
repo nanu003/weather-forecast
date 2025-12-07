@@ -2,18 +2,19 @@
 name: Deploy Static Content to Pages
 
 on:
-  # Run this workflow whenever a push is made to the main branch
+  # Triggers the workflow on pushes to the main branch
   push:
     branches: ["main"] 
-  # Allows manual re-running
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Set permissions for the deployment
+# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write # Required to write to GitHub Pages
-  id-token: write # Required for deployment action
+  pages: write # Required to write the built files
+  id-token: write # Required for the deploy action
 
+# Allow one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -27,16 +28,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+        
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20 # Use a stable Node.js version
           cache: 'npm'
 
-      - name: Install dependencies and Build
-        # Runs the build command defined in your package.json
-        run: npm install && npm run build 
+      - name: Install dependencies
+        # This fixes the MODULE_NOT_FOUND error by running a clean install
+        run: npm install
+
+      - name: Build project
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -44,7 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # CRITICAL: This uploads the generated build files
+          # Uploads the build output from the 'dist' folder
           path: './dist' 
 
       - name: Deploy to GitHub Pages
