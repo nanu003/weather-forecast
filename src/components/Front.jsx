@@ -11,8 +11,8 @@ const Front = ({ weatherData }) => {
   }, []);
 
   if (!weatherData) return (
-    <div className="max-w-xl bg-white/80 backdrop-blur-sm rounded-xl p-12 text-center shadow-xl min-h-[600px] flex items-center justify-center">
-      <p className="text-lg text-gray-400">Search a city to see weather</p>
+    <div className="w-full max-w-xl bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-12 text-center shadow-xl min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center justify-center">
+      <p className="text-base md:text-lg text-gray-400">Search a city to see weather</p>
     </div>
   );
 
@@ -23,17 +23,16 @@ const Front = ({ weatherData }) => {
   const todayTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
   return (
-    <div className="max-w-xl bg-white/80 backdrop-blur-sm rounded-xl p-12 text-center shadow-xl min-h-[600px]">
-      <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800">🌤️ Weather in</h2>
-      <div className="text-3xl sm:text-4xl font-extrabold mt-2 text-gray-900">{city}</div>
+    <div className="w-full max-w-xl bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-8 lg:p-12 text-center shadow-xl min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
+      <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800">🌤️ Weather in</h2>
+      <div className="text-2xl md:text-3xl lg:text-4xl font-extrabold mt-2 text-gray-900">{city}</div>
 
-      <div className="mt-8">
-        <div className="text-5xl sm:text-6xl font-extrabold leading-none text-indigo-600">{tempC}°C</div>
-        <div className="text-lg text-gray-600 mt-1">/ {tempF}°F</div>
+      <div className="mt-6 md:mt-8">
+        <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-none text-indigo-600">{tempC}°C</div>
+        <div className="text-base md:text-lg text-gray-600 mt-1">/ {tempF}°F</div>
       </div>
-        <div className="px-3 rounded-lg text-4xl font-medium mr-57 mt-50"><span className="font-bold">{todayTime}</span></div>
-        <br/>
-        <div className="px-3  rounded-lg text-lg font-medium mr-50"><span className="font-bold">{todayDate}</span></div>
+        <div className="px-3 rounded-lg text-2xl md:text-3xl lg:text-4xl font-medium mt-6 md:mt-8"><span className="font-bold">{todayTime}</span></div>
+        <div className="px-3 rounded-lg text-sm md:text-base lg:text-lg font-medium mt-3"><span className="font-bold">{todayDate}</span></div>
         
     </div>
   );

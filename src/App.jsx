@@ -34,8 +34,8 @@ function App() {
   }, []);
     
   return (
-    <div className="relative h-screen flex items-center justify-center gap-8 p-8">
-      <h1 className="absolute top-4 left-1/2 -translate-x-1/2 text-3xl font-bold text-black drop-shadow-lg text-center z-10">AuraWeather</h1>
+    <div className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8">
+      <h1 className="absolute top-2 md:top-4 left-1/2 -translate-x-1/2 text-xl md:text-2xl lg:text-3xl font-bold text-black drop-shadow-lg text-center z-10 px-4">AuraWeather </h1>
       <Front weatherData={weatherData} />
       <CityWeather onWeatherFetch={setWeatherData} onAqiFetch={setAqiData} initialAqi={aqiData} initialWeather={weatherData} />
     </div>
